@@ -26,6 +26,13 @@
     "start": "npm run build && node dist/index.js",
     "build": "babel src --out-dir dist",
     "dev": "nodemon --exec babel-node src/index.js",
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register src/test"
+    "testOld": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register src/test",
+    "test" : "nyc --require babel-core/register mocha src/test/"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.spec.js",
+      "build"
+    ]
   }
 }

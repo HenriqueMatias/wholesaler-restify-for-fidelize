@@ -14,7 +14,7 @@ var log = bunyan.createLogger({
 });
 
 var server = restify.createServer({
-  name : 'nodejs-restify-mongo',
+  name : 'nodejs-restify-wholesaler',
   log  : log,
   formatters : {
     'application/json' : function (req, res, body, cb) {
@@ -22,11 +22,6 @@ var server = restify.createServer({
 
       // Does the client *explicitly* accepts application/json?
       var sendPlainText = (req.header('Accept').split(/, */).indexOf('application/json') === -1);
-
-      // Send as plain text
-      if (sendPlainText) {
-        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-      }
 
       // Send as JSON
       if (!sendPlainText) {

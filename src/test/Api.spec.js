@@ -3,6 +3,7 @@
 let restify    = require('restify');
 let superagent = require('superagent');
 import {OrdersController} from "../controller/OrdersController";
+import assert from 'assert';
 
 var URL_ROOT = "http://localhost:8887";
 describe("Tests API", function() {
@@ -36,22 +37,23 @@ describe("Tests API", function() {
     after(function(){
         server.close();
     });
-    
-    var assert = require('assert');
-    describe('teste of test', function() {
-    describe('#indexOf()', function() {
-        it('should return -1 when the value is not present', function() {
-        let chai = require('chai');
-        assert.equal(-1, [1,2,3].indexOf(4));
-        });
-    });
 
-    describe('OrdersController.prepareAnswer', function() {
-        it('should return house when the param value is house', function() {
-            let OrdersController = require('../controller/OrdersController').OrdersController;
-            let order = new OrdersController;
-            assert.equal(order.prepareAnswer('casa').error ,'casa' );
+    describe('Test API order route -> ', function() {
+        it('should return ok', function() {
+            superagent.get(url)
+                .set("Authorization", token)
+                .end(function (error, res) {
+                    assert.ifError(error);
+                    assert.equal(res.status, status.OK);
+
+                    var results;
+                    assert.doesNotThrow(function (){
+                        results = JSON.parse(res.text).areas;
+                    });
+
+                    assert.equal(results.length, 2);
+                    done();
+                });
         });
     });
-});
 });

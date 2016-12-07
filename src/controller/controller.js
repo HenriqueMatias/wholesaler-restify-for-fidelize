@@ -1,7 +1,7 @@
 export class Controller {
 
     notImplemented(req, res, next){
-        res.send(501,'data:{not implemented}');
+        res.send(501,'error:{not implemented}');
         return next();
     }
 
