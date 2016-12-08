@@ -1,7 +1,7 @@
 
 export class OrderLayout {
-    
-    constructor (name, obj) {
+
+    constructor(name, obj) {
         this.fileName = name;
         this.itensLength = 0;
         this.lineList = [];
@@ -28,18 +28,15 @@ export class OrderLayout {
     }
     processBody() {
         let resolve = function () {
-
-            
-            for (let item in this.obj.order.itens) {
-                this.lineList.push(
-                    [
-                        item.ean,
-                        item.amount,
-                        item.discount,
-                        item.netPrice
-                    ]
-                );
-
+            for (let i in this.obj.order.itens) {
+                let item = this.obj.order.itens[i];
+                let product = [
+                    item.ean,
+                    item.amount,
+                    item.discount,
+                    item.net_price
+                ]
+                this.lineList.push(product);
                 this.itensLength++
             }
         }

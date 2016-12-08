@@ -1,6 +1,8 @@
+import fs from 'fs';
 import assert from 'assert';
 import {FileManager} from '../helper/FileManager';
 import {OrderLayout} from '../layout/OrderLayout';
+
 
 describe("Tests - FileManager", function() {
     var requisition = {
@@ -37,11 +39,34 @@ describe("Tests - FileManager", function() {
     };
     
     describe('FileManager.construct', function() {
-            it('should have the right variables', function() {
-                
+            it('should be a Array', function() { 
                 let orderLayout = new OrderLayout('FileManagerTeste.csv',requisition); 
                 let fileManager = new FileManager(orderLayout);
-                assert(typeof fileManager.fileLines == Array);
+                assert(Array.isArray(fileManager.fileLines));
             });
+            it('should have the right variables', function() { 
+                let orderLayout = new OrderLayout('FileManagerTeste.csv',requisition); 
+                let fileManager = new FileManager(orderLayout);
+                assert(Array.isArray(fileManager.fileLines));
+            });
+    });
+    describe('FileManager.saveFile', function () {
+        let testFilePath = __dirname+'/'+'file_test/'+'FileManagerTeste.csv';
+        it('should be created', function () {
+            let orderLayout = new OrderLayout('FileManagerTeste.csv', requisition);
+            let fileManager = new FileManager(orderLayout);
+            fileManager.completePath = testFilePath;
+            fileManager.saveFile();
+            fs.access(testFilePath, (err) => {
+                if(err){
+                    assert(false);
+                }else{
+                    assert(true);
+                    fs.unlink(testFilePath)
+                }
+                console.log();
+            });
+        });
+    
     });
 });

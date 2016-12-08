@@ -37,7 +37,6 @@ describe("Tests API", function() {
     after(function(){
         server.close();
     });
-
     describe('Test API order route -> ', function() {
         it('should return ok', function() {
             superagent.get(url)
