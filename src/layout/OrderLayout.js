@@ -1,8 +1,7 @@
 
 export class OrderLayout {
 
-    constructor(name, obj) {
-        this.fileName = name;
+    constructor(obj) {
         this.itensLength = 0;
         this.lineList = [];
         this.lineFooterCode = '9';
@@ -62,6 +61,13 @@ export class OrderLayout {
         return this.lineList;
     }
     getFileName() {
-        return this.fileName;
+
+        let preName = [
+            'PEDIDO',
+            this.obj.id,
+            this.obj.order.wholesaler_code,
+            this.obj.order.project_code
+        ];
+        return preName.join('_') + '.PED.' + parseInt(Math.random());
     }
 }

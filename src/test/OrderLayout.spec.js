@@ -84,7 +84,7 @@ describe("Tests - OrderLayout", function() {
     });
     describe('Test OrderLayout.process function', function () {
         it('first item of order should have the rigth structure', function () {
-            let orderLayout = new OrderLayout('file-test', requisition);
+            let orderLayout = new OrderLayout(requisition);
             let expectedOrder = requisition.order;
             let expected = [
                 "7890000000001",

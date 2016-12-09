@@ -24,9 +24,8 @@
   },
   "scripts": {
     "start": "npm run build && node dist/index.js",
-    "build": "babel src --out-dir dist",
+    "build": "babel src --out-dir dist --copy-files",
     "dev": "nodemon --exec babel-node src/index.js",
-    "testOld": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register src/test",
     "test" : "nyc --require babel-core/register mocha src/test/"
   },
   "nyc": {

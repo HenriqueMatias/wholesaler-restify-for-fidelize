@@ -1,6 +1,6 @@
 /*jslint node: true, indent: 2 */
 'use strict';
-
+process.env['VARIABLE'] = "./config/aertt";
 import restify from 'restify';
 import bunyan from 'bunyan';
 import routes from './routes';
@@ -41,10 +41,11 @@ server.pre(restify.pre.sanitizePath());
 // Default error handler. Personalize according to your needs.
 server.on('uncaughtException', function (req, res, route, err) {
   console.log('******* Begin Error *******');
-  console.log(route);
+  console.log(route.spec.path);
   console.log('*******');
   console.log(err.stack);
   console.log('******* End Error *******');
+  console.log('requisiçãooooooooooooooooooooooooooooooooooooooooooooooo');
   if (!res.headersSent) {
     return res.send(500, { ok : false });
   }

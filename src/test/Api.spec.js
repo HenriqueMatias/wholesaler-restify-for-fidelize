@@ -1,7 +1,7 @@
 
 
-let restify    = require('restify');
-let superagent = require('superagent');
+import {restify}    from 'restify';
+import superagent from 'superagent';
 import {OrdersController} from "../controller/OrdersController";
 import assert from 'assert';
 
@@ -11,7 +11,7 @@ describe("Tests API", function() {
 
     before(function () {
         server = restify.createServer({
-            name : 'nodejs-restify-mongo',
+            name : 'restify-wholesaler',
             formatters : {
                 'application/json' : function (req, res, body, cb) {
                 res.setHeader('Cache-Control', 'must-revalidate');
@@ -40,7 +40,7 @@ describe("Tests API", function() {
     describe('Test API order route -> ', function() {
         it('should return ok', function() {
             superagent.get(url)
-                .set("Authorization", token)
+                //.set("Authorization", token)
                 .end(function (error, res) {
                     assert.ifError(error);
                     assert.equal(res.status, status.OK);
