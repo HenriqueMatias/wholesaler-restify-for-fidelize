@@ -1,8 +1,8 @@
 {
-  "aplicationName":"CARACAAAAA",
-  "aplicationPath":"",
+  "aplicationName":"WholeSaler",
+  "aplicationPath":"/home/henrique/Documents/FIDELIZE/projetos/restify-wholesaler-edi/dist/files",
   "secret":"vaisefuder",
   "test":{
-      "filePathTest":""
+      "filePathTest":"/home/henrique/Documents/FIDELIZE/projetos/restify-wholesaler-edi/src/test/file_test/"
   }  
 }

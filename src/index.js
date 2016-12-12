@@ -39,18 +39,15 @@ server.pre(restify.pre.sanitizePath());
 
 /*jslint unparam:true*/
 // Default error handler. Personalize according to your needs.
-server.on('uncaughtException', function (req, res, route, err) {
-  console.log('******* Begin Error *******');
-  console.log(route.spec.path);
-  console.log('*******');
-  console.log(err.stack);
-  console.log('******* End Error *******');
-  console.log('requisiçãooooooooooooooooooooooooooooooooooooooooooooooo');
-  if (!res.headersSent) {
-    return res.send(500, { ok : false });
-  }
-  res.end();
-});
+// server.on('uncaughtException', function (req, res, route, err) {
+//   console.log('******* Begin Error *******');
+//   console.error(err);
+//   console.log('******* End Error *******');
+//   if (!res.headersSent) {
+//     return res.send(500, { ok : false });
+//   }
+//   res.end();
+// });
 /*jslint unparam:false*/
 
 server.on('after', restify.auditLogger({ log: log }));
@@ -59,4 +56,3 @@ routes(server);
 server.listen(8887, function () {
   log.info('%s listening at %s', server.name, server.url);
 });
-

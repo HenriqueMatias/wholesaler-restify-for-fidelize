@@ -1,5 +1,6 @@
 import fs from 'fs';
 import OrderLayout from '../layout/OrderLayout';
+import config from 'config';
 
 export class FileManager {
 
@@ -8,21 +9,32 @@ export class FileManager {
         this.fileLines = layout.getLines();
         this.fileName = layout.getFileName();
         this.path = __dirname;
-        this.completePath = this.path + '/' + this.fileName;
+        this.completePath = config.aplicationPath + this.fileName;
     }
     saveFile() {
-        let resolve = (err, lines) => {
+        let openCallBack = (err, lines) => {
             if (err != null) {
                 if (err.code === "ENOENT") {
                     this.writeFile();
-                    console.error('myfile already exists');
+                    return;
+                }
+                else {
                     throw err;
-                } else {
-                    console.error('creating file \n  path:'.this.completePath);
                 }
             }
+            throw { message: 'Erro sem sentido', code: 69 };
         }
-        fs.open(this.completePath, 'r', resolve.bind(this));
+        openCallBack.bind(this);
+        return new Promise((resolve, reject) => {
+            try {
+                fs.open(this.completePath, 'r', openCallBack);
+                console.log(this.completePath);
+                resolve('sucessada');
+            } catch(error) {
+                console.log('deu erro');
+                reject(error.message)
+            }
+        });
     }
 
     writeFile() {

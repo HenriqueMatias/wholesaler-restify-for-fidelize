@@ -11,8 +11,12 @@ export class OrdersController extends Controller {
         let requisition = JSON.parse(req.body);
         let order       = new OrderLayout(requisition);
         let file        = new FileManager(order);
-        file.saveFile();
-        res.send(201,{status:config.aplicationName});
+        file.saveFile().then((status)=>{
+            console.log(status);
+            res.send(201,{status:config.aplicationName});
+        }, (err)=>{
+            console.error(err);
+        }).catch(console.log);
         next();
     }
 }
