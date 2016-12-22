@@ -4,9 +4,10 @@
   "main": "index.js",
   "dependencies": {
     "bunyan": "0.22.1",
-    "restify": "4.0.4",
+    "del": "^2.2.2",
     "mongoose": "4.6.8",
-    "mongoose-auto-increment": "5.0.1"
+    "mongoose-auto-increment": "5.0.1",
+    "restify": "4.0.4"
   },
   "devDependencies": {
     "assert": "^1.4.1",
@@ -26,7 +27,7 @@
     "start": "npm run build && node dist/index.js",
     "build": "babel src --out-dir dist --copy-files",
     "dev": "nodemon --exec babel-node src/index.js",
-    "test" : "nyc --require babel-core/register mocha src/test/"
+    "test": "nyc --require babel-core/register mocha src/test/"
   },
   "nyc": {
     "exclude": [

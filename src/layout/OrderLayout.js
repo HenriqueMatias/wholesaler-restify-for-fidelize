@@ -7,6 +7,7 @@ export class OrderLayout {
         this.lineFooterCode = '9';
         this.obj = obj;
         this.process();
+        this.randomNumber = parseInt(Math.random());
     }
     processHeader() {
         let resolve = function (resolve, reject) {
@@ -69,5 +70,9 @@ export class OrderLayout {
             this.obj.order.project_code
         ];
         return preName.join('_') + '.PED.' + parseInt(Math.random());
+    }
+
+    getRandomNumber() {
+        return this.randomNumber;
     }
 }

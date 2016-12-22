@@ -51,11 +51,11 @@ describe("Tests - FileManager", function() {
             });
     });
     describe('FileManager.saveFile', function () {
-        let testFilePath = __dirname+'/'+'file_test/'+'FileManagerTeste.csv';
-        fs.unlink(testFilePath);
         it('should be created', function () {
             let orderLayout = new OrderLayout(requisition);
+            let testFilePath= orderLayout.getFileName();
             let fileManager = new FileManager(orderLayout);
+            fs.unlink(testFilePath);
             fileManager.completePath = testFilePath;
             fileManager.saveFile();
             fs.access(testFilePath, (err) => {

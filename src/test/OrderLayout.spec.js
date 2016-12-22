@@ -36,18 +36,21 @@ describe("Tests - OrderLayout", function() {
         }
     };
     describe('Test OrderLayout.getFileName function', function() {
-            it('should return same name of constructor', function() {
-                let order = new OrderLayout('file-test',requisition);
-                assert.equal(order.getFileName() , 'file-test');
-            });
-            it('should return null', function() {
-                let order = new OrderLayout(null,requisition);
-                assert.equal(order.getFileName() , null);
+            it('should return same name of rule', function() {
+                let order = new OrderLayout(requisition);
+                let rule = [
+                    'PEDIDO',
+                    requisition.id,
+                    requisition.order.wholesaler_code,
+                    requisition.order.project_code
+                ];
+                let answer = rule.join('_') + '.PED';
+                assert.equal(order.getFileName().split(".").slice(0,2).join(".") , answer);
             });
     });
     describe('Test OrderLayout.process function', function () {
         it('after execute, the first item of lines should be a array with values of requisition order atribute', function () {
-            let orderLayout = new OrderLayout('file-test', requisition);
+            let orderLayout = new OrderLayout(requisition);
             let expectedOrder = requisition.order;
             let expected = [
                 expectedOrder.pos_code,
@@ -66,7 +69,7 @@ describe("Tests - OrderLayout", function() {
 
     describe('Test OrderLayout.process function', function () {
         it('after execute, the first item of lines should be a array with values of requisition order atribute', function () {
-            let orderLayout = new OrderLayout('file-test', requisition);
+            let orderLayout = new OrderLayout(requisition);
             let expectedOrder = requisition.order;
             let expected = [
                 expectedOrder.pos_code,
